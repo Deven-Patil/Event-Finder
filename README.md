@@ -399,29 +399,25 @@ This project was built with the assistance of **Cursor AI** (powered by Claude).
 
 ## 🚢 Deployment
 
-### Backend Deployment (Railway/Render)
+For detailed deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md) and [NETLIFY_DEPLOY.md](./NETLIFY_DEPLOY.md)
 
-1. **Create a new service** on Railway or Render
-2. **Connect your repository**
-3. **Set build command:** `npm install && npm run build`
-4. **Set start command:** `npm start`
-5. **Add environment variables:**
-   - `PORT` (usually auto-set by platform)
-   - `NODE_ENV=production`
+### Quick Summary
 
-### Frontend Deployment (Vercel/Netlify)
+**Frontend (Netlify):**
+- Base directory: `frontend`
+- Build command: `npm run build`
+- Publish directory: `frontend/dist`
+- Environment variable: `VITE_API_URL`
 
-1. **Create a new project** on Vercel or Netlify
-2. **Connect your repository**
-3. **Set build settings:**
-   - **Build command:** `npm run build`
-   - **Output directory:** `dist`
-4. **Add environment variable:**
-   - `VITE_API_URL` - Your deployed backend URL
+**Backend (Railway/Render/Vercel):**
+- Root directory: `backend`
+- Build command: `npm install && npm run build`
+- Start command: `npm start`
+- Environment variable: `NODE_ENV=production`
 
 ### Example Deployment URLs
 
-- **Frontend:** https://event-finder.vercel.app
+- **Frontend:** https://event-finder.netlify.app
 - **Backend:** https://event-finder-api.railway.app
 
 ## 📝 License

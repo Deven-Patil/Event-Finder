@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createEvent, CreateEventDTO } from '../api/events';
+import { createEvent } from '../api/events';
+import { CreateEventDTO } from '../types/event';
 import { getUserLocation } from '../utils/geolocation';
 import { ErrorMessage } from '../components/ErrorMessage';
 import './CreateEvent.css';
@@ -28,7 +29,7 @@ export function CreateEvent() {
     const { name, value } = e.target;
 
     if (name === 'locationName') {
-      setFormData((prev) => ({
+      setFormData((prev: CreateEventDTO) => ({
         ...prev,
         location: {
           ...prev.location,
@@ -36,7 +37,7 @@ export function CreateEvent() {
         },
       }));
     } else if (name === 'latitude' || name === 'longitude') {
-      setFormData((prev) => ({
+      setFormData((prev: CreateEventDTO) => ({
         ...prev,
         location: {
           ...prev.location,
@@ -44,12 +45,12 @@ export function CreateEvent() {
         },
       }));
     } else if (name === 'maxParticipants') {
-      setFormData((prev) => ({
+      setFormData((prev: CreateEventDTO) => ({
         ...prev,
         [name]: parseInt(value, 10) || 1,
       }));
     } else {
-      setFormData((prev) => ({
+      setFormData((prev: CreateEventDTO) => ({
         ...prev,
         [name]: value,
       }));
@@ -60,7 +61,7 @@ export function CreateEvent() {
     try {
       setLocationLoading(true);
       const position = await getUserLocation();
-      setFormData((prev) => ({
+      setFormData((prev: CreateEventDTO) => ({
         ...prev,
         location: {
           ...prev.location,
@@ -72,7 +73,7 @@ export function CreateEvent() {
       // Try to reverse geocode to get location name
       // For simplicity, we'll use a generic name
       if (!formData.location.name) {
-        setFormData((prev) => ({
+        setFormData((prev: CreateEventDTO) => ({
           ...prev,
           location: {
             ...prev.location,
